@@ -33,7 +33,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          BASE_PATH: /HandBase-demo/
+          BASE_PATH: /
           VITE_TRIAL: '1'
           VITE_DEMO: '1'
           # Base de TEST (HandBase-test) : jamais la base réelle.
