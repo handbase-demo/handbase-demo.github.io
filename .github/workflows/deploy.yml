@@ -1,4 +1,4 @@
-# Publie la démo (branche clubs de HandBase, base de test HandBase-test) sur GitHub Pages.
+# Publie la démo (branche dev de HandBase, base de test HandBase-test) sur GitHub Pages.
 # Lancement à la main : onglet Actions → « Publier la démo » → Run workflow (ou gh workflow run).
 name: Publier la démo
 
@@ -7,7 +7,7 @@ on:
     inputs:
       ref:
         description: Branche de HandBase à publier
-        default: clubs
+        default: dev
 
 permissions:
   contents: read
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           repository: handbase-app/HandBase
-          ref: ${{ inputs.ref || 'clubs' }}
+          ref: ${{ inputs.ref || 'dev' }}
       - uses: actions/setup-node@v5
         with:
           node-version: 24
