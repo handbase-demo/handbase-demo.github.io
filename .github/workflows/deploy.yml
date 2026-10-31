@@ -39,6 +39,8 @@ jobs:
           # Base de TEST (HandBase-test) : jamais la base réelle.
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          # Clé PUBLIQUE des notifications (push de la veille) ; la clé privée n'est que dans les secrets de la fonction « veille ».
+          VITE_VAPID_PUBLIC_KEY: ${{ vars.VITE_VAPID_PUBLIC_KEY }}
       - run: cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
