@@ -1,0 +1,36 @@
+# Publie la page « Nextar a déménagé » (dossier demenagement/ de CE dépôt) sur GitHub Pages, à la place de la démo.
+# Autonome : ne télécharge PAS le dépôt de l'appli (handbase-app/HandBase peut devenir privé).
+# Lancement à la main : onglet Actions → « Page de déménagement » → Run workflow (ou gh workflow run).
+# Retour arrière : lancer « Publier la démo » (tant que handbase-app/HandBase est public), qui remet l'appli.
+name: Page de déménagement
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: demenagement
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
